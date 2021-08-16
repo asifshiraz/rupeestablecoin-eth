@@ -1,2 +1,5 @@
 node_modules/
 .env
+truffle-console-commands.txt
+secrets.json
+transactions/

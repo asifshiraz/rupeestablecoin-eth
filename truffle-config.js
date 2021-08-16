@@ -18,10 +18,8 @@
  *
  */
 
+const { alchemyApiKey, mnemonic } = require('./secrets.json');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-
-const fs = require('fs');
-const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   /**
@@ -69,7 +67,15 @@ module.exports = {
 			host: "localhost",
 			port: 7545,
 			gas: 6721975,
-		}
+		},
+    rinkeby: {
+      provider: () => new HDWalletProvider(
+        mnemonic, `https://eth-rinkeby.alchemyapi.io/v2/${alchemyApiKey}`,
+      ),
+      network_id: 4,
+      gasPrice: 10e9,
+      skipDryRun: true,
+    }
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
